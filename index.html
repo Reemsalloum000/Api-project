@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مشروع API بسيط</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🛍️ إدارة المنتجات</h1>
+            <p>مشروع بسيط للتعامل مع API</p>
+        </header>
+
+        <div class="controls">
+            <button id="loadProducts" class="btn btn-primary">
+                📥 جلب المنتجات (GET)
+            </button>
+            <button id="showAddForm" class="btn btn-success">
+                ➕ إضافة منتج (POST)
+            </button>
+            <button id="clearAll" class="btn btn-danger">
+                🗑️ مسح الكل
+            </button>
+        </div>
+
+        <div id="message" class="message hidden"></div>
+
+        <div id="productForm" class="form-container hidden">
+            <h3 id="formTitle">إضافة منتج جديد</h3>
+            <form id="productFormElement">
+                <input type="hidden" id="productId">
+                
+                <div class="form-group">
+                    <label for="productTitle">اسم المنتج:</label>
+                    <input type="text" id="productTitle" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="productDescription">الوصف:</label>
+                    <textarea id="productDescription" rows="3"></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="productPrice">السعر:</label>
+                        <input type="number" id="productPrice" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productCategory">الفئة:</label>
+                        <input type="text" id="productCategory">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">💾 حفظ</button>
+                    <button type="button" id="cancelForm" class="btn btn-secondary">❌ إلغاء</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="productsContainer">
+            <div id="loading" class="loading hidden">
+                <div class="spinner"></div>
+                <p>جاري التحميل...</p>
+            </div>
+            
+            <!-- Pagination Controls -->
+            <div id="paginationTop" class="pagination-container hidden">
+                <div class="pagination-info">
+                    <span id="paginationInfo">عرض 0 من 0 منتج</span>
+                </div>
+                <div class="pagination-controls">
+                    <button id="firstPage" class="btn btn-pagination">⏮️ الأولى</button>
+                    <button id="prevPage" class="btn btn-pagination">⏪ السابق</button>
+                    <span id="pageInfo" class="page-info">صفحة 1 من 1</span>
+                    <button id="nextPage" class="btn btn-pagination">التالي ⏩</button>
+                    <button id="lastPage" class="btn btn-pagination">الأخيرة ⏭️</button>
+                </div>
+                <div class="page-size-selector">
+                    <label for="pageSize">عدد المنتجات:</label>
+                    <select id="pageSize">
+                        <option value="6">6</option>
+                        <option value="12" selected>12</option>
+                        <option value="18">18</option>
+                        <option value="24">24</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div id="productsList" class="products-grid"></div>
+
+            <!-- Bottom Pagination -->
+            <div id="paginationBottom" class="pagination-container hidden">
+                <div class="pagination-controls">
+                    <button id="firstPageBottom" class="btn btn-pagination">⏮️ الأولى</button>
+                    <button id="prevPageBottom" class="btn btn-pagination">⏪ السابق</button>
+                    <span id="pageInfoBottom" class="page-info">صفحة 1 من 1</span>
+                    <button id="nextPageBottom" class="btn btn-pagination">التالي ⏩</button>
+                    <button id="lastPageBottom" class="btn btn-pagination">الأخيرة ⏭️</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="advanced-section">
+            <h3>🔧 العمليات المتقدمة (PATCH)</h3>
+            <div id="patchSection" class="patch-container">
+                <p>اختر منتج من القائمة أعلاه لتعديل خصائصه بشكل جزئي</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
